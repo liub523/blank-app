@@ -65,6 +65,6 @@ a=fmtp:96 {fmtp_str}
 a=recvonly
 """
 
-# 右侧显示生成的 SDP 文本，使用 st.code 以支持高亮显示
+# 右侧显示生成的 SDP 文本，使用 st.text_area 以支持自动换行
 st.header("Generated SDP Text")
-st.code(sdp_text, language='text')  # 使用 st.code 以支持高亮显示
+st.text_area("SDP Output", value=sdp_text, height=300, disabled=True)  # 设置高度以支持自动换行
