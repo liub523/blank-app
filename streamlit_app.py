@@ -10,26 +10,36 @@ media_type = st.sidebar.selectbox("Media Type", ["Video", "Audio"])
 
 if media_type == "Video":
     st.sidebar.subheader("Video Settings")
-    video_codec = st.sidebar.selectbox("Video Codec", ["H264", "H265", "JPEG2000"])
-    width = st.sidebar.number_input("Width", min_value=1, value=1280)
-    height = st.sidebar.number_input("Height", min_value=1, value=720)
-    framerate = st.sidebar.number_input("Framerate", min_value=1, value=60000)
-    sampling = st.sidebar.selectbox("Sampling", ["YCbCr-4:2:0", "YCbCr-4:2:2", "YCbCr-4:4:4"])
-    depth = st.sidebar.selectbox("Depth", ["8", "10", "12"])
-    colorimetry = st.sidebar.selectbox("Colorimetry", ["BT.601", "BT.709", "BT.2020"])
-    tcs = st.sidebar.selectbox("TCS (Transfer Characteristic System)", ["SDR", "HDR10", "HLG"])
+    col1, col2 = st.sidebar.columns(2)  # 创建两列布局
+    with col1:
+        video_codec = st.selectbox("Video Codec", ["H264", "H265", "JPEG2000"])
+        width = st.number_input("Width", min_value=1, value=1280)
+        height = st.number_input("Height", min_value=1, value=720)
+        framerate = st.number_input("Framerate", min_value=1, value=60000)
+    
+    with col2:
+        sampling = st.selectbox("Sampling", ["YCbCr-4:2:0", "YCbCr-4:2:2", "YCbCr-4:4:4"])
+        depth = st.selectbox("Depth", ["8", "10", "12"])
+        colorimetry = st.selectbox("Colorimetry", ["BT.601", "BT.709", "BT.2020"])
+        tcs = st.selectbox("TCS", ["SDR", "HDR10", "HLG"])
+    
     port = st.sidebar.number_input("Video Port", min_value=1024, max_value=65535, value=30000)
     
     media_type_str = f"video {port} RTP/AVP 96"
     fmtp_str = f"sampling={sampling}; width={width}; height={height}; exactframerate={framerate}/1001; depth={depth}; TCS={tcs}; colorimetry={colorimetry}"
 else:
     st.sidebar.subheader("Audio Settings")
-    audio_codec = st.sidebar.selectbox("Audio Codec", ["AAC", "PCM", "MP2T"])
-    sample_rate = st.sidebar.number_input("Sample Rate", min_value=8000, value=48000)
-    channels = st.sidebar.number_input("Channels", min_value=1, value=2)
-    bit_depth = st.sidebar.selectbox("Bit Depth", [16, 24])
-    sampling = st.sidebar.selectbox("Sampling", ["1", "2", "3", "4"])
-    depth = st.sidebar.selectbox("Depth", ["16", "24"])
+    col1, col2 = st.sidebar.columns(2)  # 创建两列布局
+    with col1:
+        audio_codec = st.selectbox("Audio Codec", ["AAC", "PCM", "MP2T"])
+        sample_rate = st.number_input("Sample Rate", min_value=8000, value=48000)
+        channels = st.number_input("Channels", min_value=1, value=2)
+    
+    with col2:
+        bit_depth = st.selectbox("Bit Depth", [16, 24])
+        sampling = st.selectbox("Sampling", ["1", "2", "3", "4"])
+        depth = st.selectbox("Depth", ["16", "24"])
+    
     port = st.sidebar.number_input("Audio Port", min_value=1024, max_value=65535, value=5000)
     
     media_type_str = f"audio {port} RTP/AVP 96"
