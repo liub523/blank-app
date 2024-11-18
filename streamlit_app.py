@@ -69,7 +69,3 @@ a=recvonly
 # 右侧显示生成的 SDP 文本，使用 st.markdown 以支持格式化显示
 st.header("Generated SDP Text")
 st.markdown(f"```\n{sdp_text}\n```")  # 使用 markdown 格式化显示
-
-# 右侧显示生成的 SDP 文本，使用 st.text_area 以支持自动换行
-st.header("Generated SDP Text")
-st.text_area("SDP Output", value=sdp_text, height=300, disabled=True)  # 设置高度以支持自动换行
