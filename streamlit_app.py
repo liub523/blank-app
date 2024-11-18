@@ -1,7 +1,7 @@
 import streamlit as st
 
 # 设置页面标题
-st.title("ST2110-20 SDP 文件生成器")
+st.title("ST2110-20 SDP Generator")
 
 # 左侧参数调整
 st.sidebar.header("Parameter Settings")
