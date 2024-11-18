@@ -14,13 +14,13 @@ if media_type == "Video":
     with col1:
         video_codec = st.selectbox("Video Codec", ["H264", "H265", "JPEG2000"])
         width = st.number_input("Width", min_value=1, value=1280)
+        sampling = st.selectbox("Sampling", ["YCbCr-4:2:0", "YCbCr-4:2:2", "YCbCr-4:4:4"])
     
     with col2:
         height = st.number_input("Height", min_value=1, value=720)
         framerate = st.number_input("Framerate", min_value=1, value=60000)
     
     with col3:
-        sampling = st.selectbox("Sampling", ["YCbCr-4:2:0", "YCbCr-4:2:2", "YCbCr-4:4:4"])
         depth = st.selectbox("Depth", ["8", "10", "12"])
         colorimetry = st.selectbox("Colorimetry", ["BT.601", "BT.709", "BT.2020"])
         tcs = st.selectbox("TCS", ["SDR", "HDR10", "HLG"])
