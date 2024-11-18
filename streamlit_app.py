@@ -65,6 +65,6 @@ a=fmtp:96 {fmtp_str}
 a=recvonly
 """
 
-# 右侧显示生成的 SDP 文本，使用 st.code 以支持高亮显示
+# 右侧显示生成的 SDP 文本，使用 st.markdown 以支持格式化显示
 st.header("Generated SDP Text")
-st.code(sdp_text, language='text')  # 使用 st.code 以支持高亮显示
+st.markdown(f"```\n{sdp_text}\n```")  # 使用 markdown 格式化显示
