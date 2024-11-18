@@ -1,7 +1,7 @@
 import streamlit as st
 
 # 设置页面标题
-st.title("ST2110-20 SDP Generator")
+st.title("ST2110-20 SDP 文件生成器")
 
 # 左侧参数调整
 st.sidebar.header("Parameter Settings")
@@ -9,11 +9,11 @@ media_name = st.sidebar.text_input("Media Name", "example_media")
 media_type = st.sidebar.selectbox("Media Type", ["Video", "Audio"])
 
 if media_type == "Video":
+    st.sidebar.subheader("Video Settings")
     video_codec = st.sidebar.selectbox("Video Codec", ["H264", "H265", "JPEG2000"])
     width = st.sidebar.number_input("Width", min_value=1, value=1280)
     height = st.sidebar.number_input("Height", min_value=1, value=720)
     framerate = st.sidebar.number_input("Framerate", min_value=1, value=60000)
-    aspect_ratio = st.sidebar.text_input("Aspect Ratio", "16:9")
     sampling = st.sidebar.selectbox("Sampling", ["YCbCr-4:2:0", "YCbCr-4:2:2", "YCbCr-4:4:4"])
     depth = st.sidebar.selectbox("Depth", ["8", "10", "12"])
     colorimetry = st.sidebar.selectbox("Colorimetry", ["BT.601", "BT.709", "BT.2020"])
@@ -23,6 +23,7 @@ if media_type == "Video":
     media_type_str = f"video {port} RTP/AVP 96"
     fmtp_str = f"sampling={sampling}; width={width}; height={height}; exactframerate={framerate}/1001; depth={depth}; TCS={tcs}; colorimetry={colorimetry}"
 else:
+    st.sidebar.subheader("Audio Settings")
     audio_codec = st.sidebar.selectbox("Audio Codec", ["AAC", "PCM", "MP2T"])
     sample_rate = st.sidebar.number_input("Sample Rate", min_value=8000, value=48000)
     channels = st.sidebar.number_input("Channels", min_value=1, value=2)
